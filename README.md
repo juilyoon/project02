@@ -1,2 +1,12 @@
-# project02
-Juil's Udacity Intro to Programming Nanodegree Project 2
+## Udacity Intro to Programming Nanodegree
+# Project 2
+
+[TBD]
+
+### Concepts Utilized
+-
+
+### Extra
+-
+
+Created by [**Juil Yoon**](http://juil.me)
