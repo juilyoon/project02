@@ -56,7 +56,7 @@ def daysBetween(d1, d2):
         else:
             months += daysinMonth[d1['m']:d2['m']-1]
         # Calculate left over days
-        days += daysinMonth(d1) + daysinMonth[d2['m']]
+        days += getDays(d1) + daysinMonth[d2['m']]
     else: # Days in same year and month
         days = d2['d'] - d1['d']
 
@@ -85,9 +85,27 @@ def main():
 if __name__ == '__main__':
     #Test Cases
     today = getDate()
-    bday = today
-    print bday, today
+    print "Today", today
+
+    bday = today.copy()
+    print bday
     print daysBetween(bday, today), "days old."
+    #>>> 0
+    bday = today.copy()
+    bday['d'] -= 1
+    print bday
+    print daysBetween(bday, today), "days old."
+    #>>> 1
+    bday = today.copy()
+    bday['m'] -= 1
+    print bday
+    print daysBetween(bday, today), "days old."
+    #>>> 30~31 #FIXME: Days not calculated correctly
+    bday = today.copy()
+    bday['y'] -= 1
+    print bday
+    print daysBetween(bday, today), "days old."
+    #>>> 365 #FIXME: Days not calculated correctly
 
     ###
     # main()
