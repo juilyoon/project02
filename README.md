@@ -4,6 +4,7 @@
 ## Programs
 1. Age in Days - ```ageindays.py``` ```v1.0```
   - Asks for birthday and calculates user's age in days.
+  - Written before seeing solution
 
 ### Concepts Utilized
 - Lists
