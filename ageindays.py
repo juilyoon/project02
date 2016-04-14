@@ -70,10 +70,10 @@ def getBirthday():
     birthday = {'y': 1, 'm': 1, 'd': 1}
 
     print "When is your birthday?"
-    birthday['y'] = int(raw_input('Year:'))
-    birthday['m'] = int(raw_input('Month:'))
-    birthday['d'] = int(raw_input('Day:'))
-    print birthday
+    birthday['y'] = int(raw_input('Year: '))
+    birthday['m'] = int(raw_input('Month: '))
+    birthday['d'] = int(raw_input('Day: '))
+    return birthday
 
 def main():
     today = getDate()
@@ -82,9 +82,14 @@ def main():
     birthday = getBirthday()
 
     days = daysBetween(birthday, today)
+
+    if today['m']==birthday['m'] and today['d']==birthday['d']:
+        print "Happy birthday!"
+
     print "You are", days, "days old!"
 if __name__ == '__main__':
-    # Unit Test Cases
+    ###
+    print "Unit Tests"
     today = getDate()
     print "Today", today
 
@@ -109,4 +114,4 @@ if __name__ == '__main__':
     #>>> 365~366     #DONE:10 Days not calculated correctly
 
     ###
-    # main()
+    main()
