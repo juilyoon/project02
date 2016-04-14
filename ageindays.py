@@ -9,19 +9,72 @@
 
 import datetime
 
-today = {'y':1, 'm': 1, 'd': 1}
-birthday = {'y':1, 'm': 1, 'd': 1}
+daysinMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+daysinLeapMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-def main(birthday, today):
-    return True
-
-if __name__ == '__main__':
-    print "When is your birthday?"
-    birthday['y'] = int(raw_input('Year:'))
-    birthday['m'] = int(raw_input('Month:'))
-    birthday['d'] = int(raw_input('Day:'))
-    print birthday
-
+def getDate():
+    '''Return the date as a dict'''
     t = datetime.datetime.now()
-    today['y', 'm', 'd'] = t.year, t.month, t.day
+    today = {'y':1, 'm':1, 'd':1}
+    today['y'], today['m'], today['d'] = t.year, t.month, t.day
+    return today
+
+def isLeap(year):
+    return year % 4 == 0
+
+def daysinMonth(day):
+    if isLeap(day['y']):
+        return daysinLeapMonth[day['m']-1] - day['d']
+    else:
+        return daysinMonth[day['m']-1] - day['d']
+
+def daysBetween(d1, d2):
+    # Calculate days in full years only >>> number of days
+    years, y = range(d1['y'], d2['y']), 0
+    months = []
+    days = 0
+    if len(years)>0:
+        y = (len(years) - 1) * 365
+        for i in years[1:]:
+            if isLeap(i):
+                y += 1
+        # Calculate days in full months >>> list of months
+        if isLeap(d1['y']):
+            months += daysinLeapMonth[d1['m']:]
+        else:
+            months += daysinMonth[d1['m']:]
+        if isLeap(d2['y']):
+            months += daysinLeapMonth[:d2['m']-1]
+        else:
+            months += daysinMonth[:d2['m']-1]
+        # Calculate left over days
+        days += daysinMonth(d1) + daysinMonth[d2['m']]
+    # Months in the same year
+    elif d1['m'] != d2['m']:
+        if isLeap(d1['y']):
+            months += daysinLeapMonth[d1['m']:d2['m']-1]
+        else:
+            months += daysinMonth[d1['m']:d2['m']-1]
+        # Calculate left over days
+        days += daysinMonth(d1) + daysinMonth[d2['m']]
+    else: # Days in same year and month
+        days = d2['d'] - d1['d']
+
+    # Calculate days
+    return y + sum(months) + days
+
+def main():
+    # print "When is your birthday?"
+    # birthday['y'] = int(raw_input('Year:'))
+    # birthday['m'] = int(raw_input('Month:'))
+    # birthday['d'] = int(raw_input('Day:'))
+    # print birthday
+    birthday = {'y': 1991, 'm': 9, 'd': 22}
+
+    today = getDate()
     print "Today is: {d}-{m}-{y}".format(**today)
+
+    days = daysBetween(birthday, today)
+    print "You are", days, "days old!"
+if __name__ == '__main__':
+    main()
