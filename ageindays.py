@@ -74,7 +74,7 @@ def main():
     today = getDate()
     print "Today is: {d}-{m}-{y}".format(**today)
 
-    days = daysBetween(birthday, today)
-    print "You are", days, "days old!"
+    # days = daysBetween(birthday, today)
+    # print "You are", days, "days old!"
 if __name__ == '__main__':
     main()
