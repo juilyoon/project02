@@ -2,13 +2,16 @@
 # Project 2
 
 ## Programs
-1. Age in Days - ```ageindays.py``` ```v0.2.1```
+1. Age in Days - ```ageindays.py``` ```v1.0```
   - Asks for birthday and calculates user's age in days.
 
 ### Concepts Utilized
--
+- Lists
+- Conditional
+- Loops
+- Functions
 
 ### Extra
--
+- Dictionaries
 
-Created by [**Juil Yoon**](http://juil.me)
+By [**Juil Yoon**](http://juil.me)
