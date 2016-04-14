@@ -48,7 +48,7 @@ def daysBetween(d1, d2):
         else:
             months += daysinMonth[:d2['m']-1]
         # Calculate left over days
-        days += getDays(d1) + daysinMonth[d2['m']]
+        days += getDays(d1) + d2['d']
     # Months in the same year
     elif d1['m'] != d2['m']:
         if isLeap(d1['y']):
@@ -56,11 +56,12 @@ def daysBetween(d1, d2):
         else:
             months += daysinMonth[d1['m']:d2['m']-1]
         # Calculate left over days
-        days += getDays(d1) + daysinMonth[d2['m']]
+        days += getDays(d1) + d2['d']
     else: # Days in same year and month
         days = d2['d'] - d1['d']
 
     # Calculate days
+    print y, sum(months), days  # TEST
     return y + sum(months) + days
 
 def getBirthday():
@@ -83,7 +84,7 @@ def main():
     days = daysBetween(birthday, today)
     print "You are", days, "days old!"
 if __name__ == '__main__':
-    #Test Cases
+    # Unit Test Cases
     today = getDate()
     print "Today", today
 
@@ -100,12 +101,12 @@ if __name__ == '__main__':
     bday['m'] -= 1
     print bday
     print daysBetween(bday, today), "days old."
-    #>>> 30~31 #FIXME: Days not calculated correctly
+    #>>> 30~31       #DONE:0 Days not calculated correctly
     bday = today.copy()
     bday['y'] -= 1
     print bday
     print daysBetween(bday, today), "days old."
-    #>>> 365 #FIXME: Days not calculated correctly
+    #>>> 365~366     #DONE:10 Days not calculated correctly
 
     ###
     # main()
