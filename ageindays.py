@@ -61,7 +61,7 @@ def daysBetween(d1, d2):
         days = d2['d'] - d1['d']
 
     # Calculate days
-    print y, sum(months), days  # TEST
+    # print y, sum(months), days  # TEST
     return y + sum(months) + days
 
 def getBirthday():
