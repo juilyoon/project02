@@ -22,7 +22,19 @@ def getDate():
     return today
 
 def isLeap(year):
-    return year % 4 == 0
+    '''From Wikipedia https://en.wikipedia.org/wiki/Leap_year#Algorithm
+            if (year is not divisible by 4) then (it is a common year)
+            else if (year is not divisible by 100) then (it is a leap year)
+            else if (year is not divisible by 400) then (it is a common year)
+            else (it is a leap year)'''
+    if year % 400 == 0:
+        return True
+    elif year % 100 == 0:
+        return False
+    elif year % 4 == 0:
+        return True
+    else:
+        return False
 
 def getDays(day):
     if isLeap(day['y']):
@@ -77,8 +89,8 @@ def daysBetween(d1, d2):
 
     # Calculate days
     total = y + sum(months) + days
-    print y, sum(months), days  # TEST
-    print total
+    # print y, sum(months), days  # TEST
+    # print total
     return total
 
 def getBirthday():
@@ -113,7 +125,7 @@ def test():
                   (({'y':2011, 'm':6, 'd':30},{'y':2012, 'm':6, 'd':30}), 366),
                   (({'y':2011, 'm':1, 'd':1},{'y':2012, 'm':8, 'd':8}), 585 ),
                   (({'y':2008, 'm':1, 'd':1},{'y':2012, 'm':8, 'd':8}), 585 + 365*3 + 1 ),
-                  (({'y':1900, 'm':1, 'd':1},{'y':1999, 'm':12, 'd':31}), 36524), # 36523 off by one
+                  (({'y':1900, 'm':1, 'd':1},{'y':1999, 'm':12, 'd':31}), 36523), # Fixed with proper leap year calculation
                   (({'y':2016, 'm':1, 'd':1},{'y':2012, 'm':3, 'd':1}), "AssertionError")]
 
     for (args, answer) in test_cases:

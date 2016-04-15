@@ -12,6 +12,7 @@
   - Idea from [Udacity forum](https://discussions.udacity.com/t/take-a-break-mini-project/123310)
 
 ### Concepts Utilized
+- Pseudocode
 - Lists
 - Conditional
 - Loops
