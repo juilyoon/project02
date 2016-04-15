@@ -130,6 +130,7 @@ def main():
     print "You are", days, "days old!"
 
 def test():
+    #TODO: Move printing test results to separate file. Leave asserts.
     '''Copied from [Udacity](https://classroom.udacity.com/nanodegrees/nd000/parts/0001345403/modules/356813882475460/lessons/4184188665/concepts/1082817710923)'''
 
     # # Assert checks for functions here
