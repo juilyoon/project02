@@ -6,6 +6,7 @@
   - Asks for birthday and calculates user's age in days.
   - Written before seeing solution
   - Prematurely optimized. See ```ageindays-simple.py``` for simple mechanical solution.
+  - ```python -c 'import ageindays; ageindays.test()```
 2. Video Break - ```videobreak.py```
   - Opens a music video every two hours to remind user to take a beak.
   - Idea from [Udacity forum](https://discussions.udacity.com/t/take-a-break-mini-project/123310)
@@ -15,6 +16,7 @@
 - Conditional
 - Loops
 - Functions
+- ```test()``` and ```assert()```
 
 ### Extra
 - Dictionaries

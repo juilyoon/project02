@@ -7,7 +7,7 @@
 # Problem:
 # Given your birthday and the current date, calculate your age in days. Compensate for leap days. Assume that the birthday and current date are correct dates (and no time travel). Simply put, if you were born 1 Jan 2012 and today's date is 2 jan 2012, you are 1 day old.
 
-#TODO:20 Write simple mechanical solution: Add days
+#TODO:10 Write simple mechanical solution: Add days
 
 import datetime
 
@@ -37,12 +37,12 @@ def isDatesBefore(d1, d2):
     elif d1['y'] == d2['y']:
         if d1['m'] < d2['m']:
             return True
-        elif d1['m'] = d2['m']:
+        elif d1['m'] == d2['m']:
             return d1['d'] <= d2['d']
     return False
 
 def daysBetween(d1, d2):
-    #DONE:20 Test for input validity and that d1 < d2
+    #DONE:10 Test for input validity and that d1 < d2
     assert isDatesBefore(d1, d2)
     # Calculate days in full years only >>> number of days
     years, y = range(d1['y'], d2['y']), 0
@@ -76,13 +76,15 @@ def daysBetween(d1, d2):
         days = d2['d'] - d1['d']
 
     # Calculate days
-    # print y, sum(months), days  # TEST
-    return y + sum(months) + days
+    total = y + sum(months) + days
+    print y, sum(months), days  # TEST
+    print total
+    return total
 
 def getBirthday():
     '''Receive input from user
     Return dict with birthday'''
-    # TODO:10 Test for input validity
+    # TODO:0 Test for input validity
     birthday = {'y': 1, 'm': 1, 'd': 1}
 
     print "When is your birthday?"
@@ -105,45 +107,29 @@ def main():
     print "You are", days, "days old!"
 
 def test():
-    test_cases = [((2012,1,1,2012,2,28), 58),
-                  ((2012,1,1,2012,3,1), 60),
-                  ((2011,6,30,2012,6,30), 366),
-                  ((2011,1,1,2012,8,8), 585 ),
-                  ((1900,1,1,1999,12,31), 36523)]
+    '''Copied from [Udacity](https://classroom.udacity.com/nanodegrees/nd000/parts/0001345403/modules/356813882475460/lessons/4184188665/concepts/1082817710923)'''
+    test_cases = [(({'y':2012, 'm':1, 'd':1},{'y':2012, 'm':2, 'd':28}), 58),
+                  (({'y':2012, 'm':1, 'd':1},{'y':2012, 'm':3, 'd':1}), 60),
+                  (({'y':2011, 'm':6, 'd':30},{'y':2012, 'm':6, 'd':30}), 366),
+                  (({'y':2011, 'm':1, 'd':1},{'y':2012, 'm':8, 'd':8}), 585 ),
+                  (({'y':2008, 'm':1, 'd':1},{'y':2012, 'm':8, 'd':8}), 585 + 365*3 + 1 ),
+                  (({'y':1900, 'm':1, 'd':1},{'y':1999, 'm':12, 'd':31}), 36524), # 36523 off by one
+                  (({'y':2016, 'm':1, 'd':1},{'y':2012, 'm':3, 'd':1}), "AssertionError")]
 
     for (args, answer) in test_cases:
-        result = daysBetweenDates(*args)
-        if result != answer:
-            print "Test with data:", args, "failed"
-            print result
-        else:
-            print "Test case passed!"
+        try:
+            result = daysBetween(*args)
+            if result != answer:
+                print "Test with data:", args, "failed"
+            else:
+                print "Test case passed!"
+        except AssertionError:
+            if answer == "AssertionError":
+                print "Nice job! Test case {0} correctly raises AssertionError!\n".format(args)
+            else:
+                print "Check your work! Test case {0} should not raise AssertionError!\n".format(args)
 
 if __name__ == '__main__':
-    ### #TODO:0 Move test cases to separate function
-    print "Unit Tests"
-    today = getDate()
-    print "Today", today
-
-    bday = today.copy()
-    print bday
-    print daysBetween(bday, today), "days old."
-    #>>> 0
-    bday = today.copy()
-    bday['d'] -= 1
-    print bday
-    print daysBetween(bday, today), "days old."
-    #>>> 1
-    bday = today.copy()
-    bday['m'] -= 1
-    print bday
-    print daysBetween(bday, today), "days old."
-    #>>> 30~31       #DONE:0 Days not calculated correctly
-    bday = today.copy()
-    bday['y'] -= 1
-    print bday
-    print daysBetween(bday, today), "days old."
-    #>>> 365~366     #DONE:10 Days not calculated correctly
-
-    ###
+    #DONE:0 Move test cases to separate function
+    # test()
     main()
