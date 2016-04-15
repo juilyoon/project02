@@ -1,5 +1,5 @@
-## Udacity Intro to Programming Nanodegree
-# Project 2
+# Stage 2
+**Udacity** Intro to Programming Nanodegree
 
 ## Programs
 1. Age in Days - ```ageindays.py``` ```v1.0```
@@ -13,6 +13,9 @@
 3. Mad Lib Generator - ```madlib.py```
   - Asks for input and generates a mad lib.
   - Randomly selects mad lib to generate.
+4. **Final Project**: Fill in The Blank Quiz - `fill-in-the-blanks.py`
+  - User enters the answers to fill-in-the-blank quiz.
+  - [Docs](docs/fillintheblanks.md)
 
 ### Concepts Utilized
 - Pseudocode
@@ -21,6 +24,7 @@
 - Loops
 - Functions
 - ```test()``` and ```assert()```
+- User input
 
 ### Extra
 - Dictionaries
