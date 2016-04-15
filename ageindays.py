@@ -132,7 +132,8 @@ def main():
 def test():
     '''Copied from [Udacity](https://classroom.udacity.com/nanodegrees/nd000/parts/0001345403/modules/356813882475460/lessons/4184188665/concepts/1082817710923)'''
 
-
+    # # Assert checks for functions here
+    # assert daysBetween({'y':2012, 'm':1, 'd':1},{'y':2012, 'm':1, 'd':2}) == 1
 
     test_cases = [(({'y':2012, 'm':1, 'd':1},{'y':2012, 'm':2, 'd':28}), 58),
                   (({'y':2012, 'm':1, 'd':1},{'y':2012, 'm':3, 'd':1}), 60),
