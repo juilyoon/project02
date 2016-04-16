@@ -1,5 +1,5 @@
 # Project 2: Fill in The Blanks Quiz
-Intro to Programming Nanodegree
+** Intro to Programming Nanodegree **
 
 For this project, I built a Fill-in-the-Blanks quiz.
 The quiz will prompt a user with a paragraph containing several blanks.
