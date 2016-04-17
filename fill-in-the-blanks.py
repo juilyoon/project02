@@ -31,7 +31,12 @@ def checkAnswer(list, guess):
     return False
 
 def takeQuiz():
-    """ Shows the quiz and asks the user for answers."""
+    """ Shows the quiz and asks the user for answers.
+
+    Returns ``True`` if the user completes the quiz, ``False`` if they
+    use too many guesses"""
+
+    alive = True
 
     print "Welcome to the quiz."
     print "What difficulty would you like?"
@@ -62,17 +67,27 @@ def takeQuiz():
                 print "Correct! \n"
                 print '-' * 20
                 print quiz.replace('___%s___' % i, a[0])
-                print '-' * 20
+                print '-' * 20 + '\n'
 
                 i += 1 #Next question
                 break
-            else:
-                print "That is incorrect. Be more prepared next time."
+            elif c > 1:
+                print "That is incorrect. Try again.\n"
                 c += -1
+            else:
+                alive = False
+                break
+
+    if alive:
+        print "Great job completing the %s quiz!" % difficulty
+    else:
+        print "Too many wrong guesses. Game over."
+
+    return alive
 
 if __name__ == '__main__':
     ## Test functions
-    # assert
+    assert checkAnswer(a['easy'][0], 'washington dc') == True
 
     # main
     takeQuiz()
