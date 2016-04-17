@@ -9,11 +9,30 @@ Example:
         $ python tests/fill-in-the-blanks.pyc
 """
 
-quizes = {'easy': """Hello ___1___"""}
-answers = {'easy': ['world']}
+quizes = {'easy':
+"""The capital city of the United States of America
+is ___1___. The current president of the USA is ___2___.
+___2___ is best known for being the first ___3___-American
+president of the USA. He has also received the
+Nobel ___4___ Prize.""",
+        'medium':
+"""The Theory of General ___1___ was proposed by ___2___ Einstein"""}
+answers = {'easy': [['Washington, D.C.', 'Washington, DC', 'Washington DC'],
+                    ['Barack Obama', 'Obama'],
+                    ['African'],
+                    ['Peace']]}
+
+def checkAnswer(list, guess):
+    """ Case insensitive check of answer."""
+
+    for a in guess:
+        if guess.lower() == a.lower():
+            return True
+    return False
 
 def takeQuiz():
     """ Shows the quiz and asks the user for answers."""
+
     print "Welcome to the quiz."
     print "What difficulty would you like?"
     difficulty = raw_input("Enter easy, medium, or hard:  ")
@@ -31,12 +50,14 @@ def takeQuiz():
     print "=" * 20 + '\n'
 
     for a in answers[difficulty]:
-        c = chances
+        i, c = 1, chances
 
-        guess = raw_input("What goes in ___1___: ")
-        if guess == a:
-            print "Correct!"
-            print quiz.replace('___1___', a)
+        guess = raw_input("What goes in ___%s___: " % i)
+        if checkAnswer(a, guess):
+            print "Correct! \n"
+            print '-' * 20
+            print quiz.replace('___1___', guess)
+            print '-' * 20
         else:
             print "That is incorrect. Be more prepared next time."
 
