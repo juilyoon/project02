@@ -36,12 +36,16 @@ def takeQuiz():
     print "Welcome to the quiz."
     print "What difficulty would you like?"
     difficulty = raw_input("Enter easy, medium, or hard:  ")
+    while difficulty not in quizes:
+        difficulty = raw_input("Please enter one of the options [easy, medium, hard]: ")
     quiz = quizes[difficulty]
 
     print "This quiz will be " + difficulty + "."
     print ""
 
-    chances = raw_input("How many chances would you like per question?")
+    chances = raw_input("How many chances would you like per question:  ")
+    while not chances.isdigit(): or int(chances) < 1
+        chances = raw_input("Please enter a number that is greater than 0:  ")
     print ""
 
     print "Let's get started:"
@@ -52,14 +56,19 @@ def takeQuiz():
     for a in answers[difficulty]:
         i, c = 1, chances
 
-        guess = raw_input("What goes in ___%s___: " % i)
-        if checkAnswer(a, guess):
-            print "Correct! \n"
-            print '-' * 20
-            print quiz.replace('___1___', guess)
-            print '-' * 20
-        else:
-            print "That is incorrect. Be more prepared next time."
+        while c > 0:
+            guess = raw_input("What goes in ___%s___: " % i)
+            if checkAnswer(a, guess):
+                print "Correct! \n"
+                print '-' * 20
+                print quiz.replace('___%s___' % i, a[0])
+                print '-' * 20
+
+                i += 1 #Next question
+                break
+            else:
+                print "That is incorrect. Be more prepared next time."
+                c += -1
 
 if __name__ == '__main__':
     ## Test functions
