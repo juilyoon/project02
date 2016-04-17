@@ -1,6 +1,8 @@
 # Project 2: Fill in The Blanks Quiz
 ** Intro to Programming Nanodegree **
 
+`v2.1`
+
 For this project, I built a Fill-in-the-Blanks quiz.
 The quiz will prompt a user with a paragraph containing several blanks.
 The user should then be asked to fill in each blank appropriately to complete the paragraph.
@@ -12,7 +14,12 @@ Example quiz:
 
 The answer for `___1___` is 'function'. Can you figure out the others?
 
-Run `fill-in-the-blanks.pyc` for a working version of the project.
+#### Run
+```shell
+python fill-in-the-blanks.py
+```
+
+Run `fill-in-the-blanks.pyc` for the Udacity version of the project.
 
 ## Code Review
 1. **Use of Variables**: Your code should take advantage of variables and variable names should reflect the values they store.
