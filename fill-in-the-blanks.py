@@ -49,6 +49,9 @@ answers = {'easy': [['Washington, D.C.', 'Washington, DC', 'Washington DC'],
 def checkAnswer(possible, guess):
     """ Case insensitive check of answer.
 
+    Assume inputs are in the correct format, since takeQuiz() accounts
+    for
+
     Args:
         possible (list): List of possible answers for question.
         guess (string): User's guess for question.
@@ -65,7 +68,8 @@ def takeQuiz():
     """ Shows the quiz and asks the user for answers.
 
     Returns:
-        bool: True if the user completes the quiz, ``False`` if they use too many guesses
+        bool: True if the user completes the quiz, ``False`` if they use
+        too many guesses.
     """
     alive = True
 
@@ -122,7 +126,16 @@ def takeQuiz():
 
 if __name__ == '__main__':
     ## Test functions
-    assert checkAnswer(answers['easy'][0], 'washington dc')
+    assert checkAnswer(answers['easy'][0], 'washington dc') == True
+    assert checkAnswer(answers['easy'][0], 'washington') == False
+    assert checkAnswer(answers['medium'][5], 'space time') == True
+    assert checkAnswer(answers['medium'][3], 'time') == False
+    assert checkAnswer(answers['hard'][1], 'OSCAR') == True
 
-    # main
-    takeQuiz()
+    # Main
+    while True:
+        takeQuiz()
+
+        if raw_input("Would you like to play again: (yes or no)  ") not in ['yes', 'y']:
+            print "Okay, good bye. \n"
+            break
