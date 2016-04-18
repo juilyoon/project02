@@ -46,7 +46,7 @@ answers = {'easy': [['Washington, D.C.', 'Washington, DC', 'Washington DC'],
                     ['Berlin'],
                     ['Walt Disney Pictures', 'Disney']]}
 
-def checkAnswer(possible, guess):
+def checkanswer(possible, guess):
     """ Case insensitive check of answer.
 
     Assume inputs are in the correct format, since takeQuiz() accounts
@@ -59,8 +59,8 @@ def checkAnswer(possible, guess):
     Returns:
         bool: True if guess is in possible, False otherwise.
     """
-    for a in possible:
-        if guess.lower() == a.lower():
+    for answer in possible:
+        if guess.lower() == answer.lower():
             return True
     return False
 
@@ -95,23 +95,23 @@ def takeQuiz():
     print quiz
     print "=" * 20 + '\n'
 
-    for i in xrange(len(answers[difficulty])):
-        c = chances
-        a = answers[difficulty][i]
+    for index in xrange(len(answers[difficulty])):
+        chance = chances
+        answer = answers[difficulty][i]
 
-        while c > 0:
-            guess = raw_input("What goes in ___%s___: " % str(i+1))
-            if checkAnswer(a, guess):
+        while chance > 0:
+            guess = raw_input("What goes in ___%s___: " % str(index+1))
+            if checkanswer(answer, guess):
                 print "Correct! \n"
                 print '-' * 20
-                quiz = quiz.replace('___%s___' % str(i+1), guess)
+                quiz = quiz.replace('___%s___' % str(index+1), guess)
                 print quiz
                 print '-' * 20 + '\n'
                 break
-            elif c > 1:
+            elif chance > 1:
                 print "That is incorrect. Try again."
-                c += -1
-                print c, "chance(s) left. \n"
+                chance += -1
+                print chance, "chance(s) left. \n"
             else:
                 alive = False
                 break
@@ -126,11 +126,11 @@ def takeQuiz():
 
 if __name__ == '__main__':
     ## Test functions
-    assert checkAnswer(answers['easy'][0], 'washington dc') == True
-    assert checkAnswer(answers['easy'][0], 'washington') == False
-    assert checkAnswer(answers['medium'][5], 'space time') == True
-    assert checkAnswer(answers['medium'][3], 'time') == False
-    assert checkAnswer(answers['hard'][1], 'OSCAR') == True
+    assert checkanswer(answers['easy'][0], 'washington dc') == True
+    assert checkanswer(answers['easy'][0], 'washington') == False
+    assert checkanswer(answers['medium'][5], 'space time') == True
+    assert checkanswer(answers['medium'][3], 'time') == False
+    assert checkanswer(answers['hard'][1], 'OSCAR') == True
 
     # Main
     while True:

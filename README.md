@@ -26,12 +26,17 @@
 - ```test()``` and ```assert()```
 - User input
 - Unit testing
+- PEP 8 [Style guide](https://www.python.org/dev/peps/pep-0008/#naming-conventions) for python code
 
 ### Extra
 - Dictionaries
 - Dates and time
 - ```if __name__ == '__main__':```
 - Python documentation standards [[Google](http://sphinxcontrib-napoleon.readthedocs.org/en/latest/example_google.html)]
+
+### Revised
+- Function names to follow PEP8
+- Variable names to be more descriptive
 
 ### Interesting
 - Why you don't deal with time and timezones - by Tom Scott [[Computerphile](https://www.youtube.com/watch?v=-5wpm-gesOY&list=TLBBCouWmde2kE6qFG90Fsn3GusE_aTr8k)]
