@@ -37,6 +37,7 @@
 ### Revised
 - Function names to follow PEP8
 - Variable names to be more descriptive
+- Broke taketest() into smaller functions
 
 ### Interesting
 - Why you don't deal with time and timezones - by Tom Scott [[Computerphile](https://www.youtube.com/watch?v=-5wpm-gesOY&list=TLBBCouWmde2kE6qFG90Fsn3GusE_aTr8k)]
