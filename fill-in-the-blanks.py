@@ -22,7 +22,7 @@ of ___4___ and ___5___, also known as ___6___, and is the current
 definition of ___3___ in modern physics.""",
         'hard':
 """Spirited ___1___ is the ___2___ Award winning film by ___3___ Miyazaki
-and Studio ___4___. It won Best ___5___ ___6___ Film and the
+and Studio ___4___. It won Best ___5___ ___6___ Film, and also won the
 Golden ___7___ at the 2002 ___8___ International Film Festival
 (among many others). It was adapted by ___9___ for the English speaking
 audience."""}
@@ -46,6 +46,31 @@ answers = {'easy': [['Washington, D.C.', 'Washington, DC', 'Washington DC'],
                     ['Berlin'],
                     ['Walt Disney Pictures', 'Disney']]}
 
+alive = True
+chances, difficulty = 1, 'easy'
+
+def setdifficulty():
+    """ Sets the quiz ``difficulty`` level. """
+    global difficulty
+
+    print "What difficulty would you like?"
+    difficulty= raw_input("Enter easy, medium, or hard:  ")
+    while difficulty not in quizes:
+        difficulty = raw_input("Please enter one of the options [easy, medium, hard]: ")
+
+    print "This quiz will be " + difficulty + " difficulty."
+    print ""
+
+def setchances():
+    """ Sets the number of ``chances`` the player gets per question. """
+    global chances
+
+    chances = raw_input("How many chances would you like per question:  ")
+    while not chances.isdigit() or int(chances) < 1:
+        chances = raw_input("Please enter a number that is greater than 0:  ")
+    chances = int(chances)
+    print ""
+
 def checkanswer(possible, guess):
     """ Case insensitive check of answer.
 
@@ -64,31 +89,52 @@ def checkanswer(possible, guess):
             return True
     return False
 
-def takeQuiz():
+def answerquestion(index, quiz):
+    """ Gets the player's input for blank number ``index``.
+
+    Sets the global variable ``alive`` to False if the player
+    has used all their chances.
+
+    Returns:
+        string: Quiz updated with player's answer.
+    """
+    global alive
+    chance = chances
+    answer = answers[difficulty][index]
+
+    while chance > 0:
+        guess = raw_input("What goes in ___%s___: " % str(index+1))
+        if checkanswer(answer, guess):
+            print "Correct! \n"
+            print '-' * 20
+            quiz = quiz.replace('___%s___' % str(index+1), guess)
+            print quiz
+            print '-' * 20 + '\n'
+            break
+        elif chance > 1:
+            print "That is incorrect. Try again."
+            chance += -1
+            print chance, "chance(s) left. \n"
+        else:
+            alive = False
+            break
+    return quiz
+
+def takequiz():
     """ Shows the quiz and asks the user for answers.
 
     Returns:
         bool: True if the user completes the quiz, ``False`` if they use
         too many guesses.
     """
+    global alive
     alive = True
 
     print '\n' + "* " * 10
     print "Welcome to the quiz.\n"
-    print "What difficulty would you like?"
-    difficulty = raw_input("Enter easy, medium, or hard:  ")
-    while difficulty not in quizes:
-        difficulty = raw_input("Please enter one of the options [easy, medium, hard]: ")
+    setdifficulty()
     quiz = quizes[difficulty]
-
-    print "This quiz will be " + difficulty + " difficulty."
-    print ""
-
-    chances = raw_input("How many chances would you like per question:  ")
-    while not chances.isdigit() or int(chances) < 1:
-        chances = raw_input("Please enter a number that is greater than 0:  ")
-    chances = int(chances)
-    print ""
+    setchances()
 
     print "Let's get started:"
     print "=" * 20
@@ -96,25 +142,7 @@ def takeQuiz():
     print "=" * 20 + '\n'
 
     for index in xrange(len(answers[difficulty])):
-        chance = chances
-        answer = answers[difficulty][i]
-
-        while chance > 0:
-            guess = raw_input("What goes in ___%s___: " % str(index+1))
-            if checkanswer(answer, guess):
-                print "Correct! \n"
-                print '-' * 20
-                quiz = quiz.replace('___%s___' % str(index+1), guess)
-                print quiz
-                print '-' * 20 + '\n'
-                break
-            elif chance > 1:
-                print "That is incorrect. Try again."
-                chance += -1
-                print chance, "chance(s) left. \n"
-            else:
-                alive = False
-                break
+        quiz = answerquestion(index, quiz)
         if not alive: break
 
     if alive:
@@ -134,7 +162,7 @@ if __name__ == '__main__':
 
     # Main
     while True:
-        takeQuiz()
+        takequiz()
 
         if raw_input("Would you like to play again: (yes or no)  ") not in ['yes', 'y']:
             print "Okay, good bye. \n"
